@@ -1,0 +1,11 @@
+{
+  "name": "mern-shopping-list",
+  "version": "1.0.0",
+  "description": "Shopping List made with the MERN Stack",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shubham Jha",
+  "license": "MIT"
+}
