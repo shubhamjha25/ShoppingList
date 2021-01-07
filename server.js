@@ -1,11 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')
+const config = require('config');
 const path = require('path');
 const port = process.env.PORT || 5000;
 
 const items = require('./routes/api/items');
 const users = require('./routes/api/users');
+const auth = require('./routes/api/auth');
 
 const app = express();
 
@@ -18,7 +20,7 @@ app.use(
 )
 
 // DB Config
-const mongoURI = 'mongodb+srv://Shubham:sj2512@shoppingcluster.zihop.mongodb.net/test?retryWrites=true&w=majority';
+const mongoURI = config.get('mongoURI');
 
 // Connect To MongoDB
 mongoose
@@ -30,6 +32,7 @@ mongoose
 // Using The Routes
 app.use('/api/items', items);
 app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 // Serve The Sattic Assets (if in Production)
 if(process.env.NODE_ENV === 'production') {

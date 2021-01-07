@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://Shubham:sj2512@shoppingcluster.zihop.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "sj_jwt_secret"
+}
