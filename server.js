@@ -5,6 +5,7 @@ const path = require('path');
 const port = process.env.PORT || 5000;
 
 const items = require('./routes/api/items');
+const users = require('./routes/api/users');
 
 const app = express();
 
@@ -28,6 +29,7 @@ mongoose
 
 // Using The Routes
 app.use('/api/items', items);
+app.use('/api/users', users);
 
 // Serve The Sattic Assets (if in Production)
 if(process.env.NODE_ENV === 'production') {
