@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { GET_ERRORS, CLEAR_ERRORS } from './types';
 
 // RETURN ERRORS

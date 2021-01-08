@@ -23,15 +23,20 @@ class ShoppingList extends Component {
                     <TransitionGroup className="shopping-list">
                         {items.map(({ _id, name }) => (
                             <CSSTransition key={_id} timeout={550} classNames="fade">
-                                <ListGroupItem>
-                                    <Button
-                                        className="remove-btn" color="danger" size="sm"
-                                        onClick={this.onDeleteClick.bind(this, _id)}
-                                    >
-                                        &times;
-                                    </Button>
-                                    {name}
-                                </ListGroupItem>
+                                {
+                                        this.props.isAuthenticated ?
+                                        <ListGroupItem>
+                                    
+                                            <Button
+                                                className="remove-btn" color="danger" size="sm"
+                                                onClick={this.onDeleteClick.bind(this, _id)}
+                                            >
+                                                &times;
+                                            </Button>
+                                            {name}
+                                        </ListGroupItem>
+                                        : <h4></h4>
+                                } 
                             </CSSTransition>
                         ))}
                     </TransitionGroup>
@@ -43,11 +48,13 @@ class ShoppingList extends Component {
 
 ShoppingList.propTypes = {
     getItems: PropTypes.func.isRequired,
-    item: PropTypes.object.isRequired
+    item: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool
 }
 
 const mapStateToProps = (state) => ({
-    item: state.item
+    item: state.item,
+    isAuthenticated: state.auth.isAuthenticated
 })
 
 export default connect(mapStateToProps, { getItems, deleteItem })(ShoppingList);
