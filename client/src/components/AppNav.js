@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Container } from 'reactstrap';
+import RegisterModal from './auth/RegisterModal';
+import Logout from './auth/Logout';
 
 class AppNav extends Component {
     state = {
@@ -22,6 +24,12 @@ class AppNav extends Component {
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                    <RegisterModal />
+                                </NavItem>
+                                <NavItem>
+                                    <Logout />
+                                </NavItem>
                                 <NavItem>
                                     <NavLink href="https://github.com/shubhamjha25/ShoppingList" target="_blank">GitHub</NavLink>
                                 </NavItem>

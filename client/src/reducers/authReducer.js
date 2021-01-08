@@ -21,8 +21,9 @@ export default function(state = initialState, action) {
                 isLoading: false,
                 user: action.payload
             };
-        case LOGOUT_SUCCESS:
+        case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
+            localStorage.setItem('token', action.payload.token)
             return {
                 ...state,
                 ...action.payload,

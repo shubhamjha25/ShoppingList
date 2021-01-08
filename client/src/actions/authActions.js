@@ -23,6 +23,37 @@ export const loadUser = () => (dispatch, getState) => {
         });
 }
 
+// Register user 
+export const register = ({ name, email, password }) => dispatch => {
+    const config = {
+        headers: {
+            "Content-type": "application/json"
+        }
+    }
+
+    // Request Body
+    const body = JSON.stringify({ name, email, password });
+
+    axios.post('/api/users', body, config)
+        .then(res => dispatch({
+            type: REGISTER_SUCCESS,
+            payload: res.data
+        }))
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.msg, 'REGISTER_FAIL'));
+            dispatch({
+                type: REGISTER_FAIL
+            })
+        })
+}
+
+// Logout User
+export const logout = () => {
+    return {
+        type: LOGOUT_SUCCESS
+    };
+};
+
 // Setup Config Headers & Token
 export const tokenConfig = getState => {
     // Get Token From localStorage
@@ -37,7 +68,7 @@ export const tokenConfig = getState => {
 
     // If Token, Add it to the Headers
     if(token) {
-        config.headersp['x-auth-token'] = token;
+        config.headers['x-auth-token'] = token;
     }
 
     return config;
